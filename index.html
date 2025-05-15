@@ -104,7 +104,7 @@
                 text: "怖い気持ちがしたとき、誰に相談すればいい？",
                 options: [
                     { text: "先生や信頼できる大人", correct: true },
-                    { text:  "知らない人", correct: false },
+                    { text: "知らない人", correct: false },
                     { text: "何も言わない", correct: false }
                 ],
                 feedback: {
@@ -114,9 +114,10 @@
             },
             3: {
                 text: "虐待を止めたいとき、どうしたらいい？",
-                { text: "我慢して何もしない", correct: false },
-                { text: "110番や児童相談所に電話する", correct: true },
-                { text: "一人で解決しようとする", correct: false }
+                options: [
+                    { text: "我慢して何もしない", correct: false },
+                    { text: "110番や児童相談所に電話する", correct: true },
+                    { text: "一人で解決しようとする", correct: false }
                 ],
                 feedback: {
                     correct: "やった！110番や児童相談所に連絡するのが正しいよ。ヒーローポイント+10！",
@@ -178,7 +179,7 @@
             }
         };
 
-        // ゲーム開始
+        // ゲーム開始時に初期化
         updateGame();
     </script>
 </body>
