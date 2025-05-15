@@ -5,19 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>セーフティ・シールド・クエスト</title>
     <style>
-        body { font-family: 'Arial', sans-serif; text-align: center; background-color: #f0f8ff; margin: 0; padding: 10px; font-size: 16px; line-height: 1.5; -webkit-text-size-adjust: 100%; touch-action: manipulation; }
-        h1 { color: #4682b4; font-size: 20px; margin: 10px 0; }
-        #game-container { max-width: 100%; margin: 0 auto; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-        #question { font-size: 18px; margin-bottom: 15px; }
-        .answer-btn { display: block; width: 90%; margin: 10px auto; padding: 12px; font-size: 16px; background-color: #87ceeb; border: none; border-radius: 5px; cursor: pointer; touch-action: manipulation; }
-        .answer-btn:hover, .answer-btn:active { background-color: #4682b4; color: #fff; }
-        #feedback { margin-top: 15px; font-size: 14px; color: #228b22; }
-        #shield-count { font-size: 16px; color: #ff4500; }
-        #start-screen, #end-screen { display: none; }
-        button { padding: 10px 20px; font-size: 16px; background-color: #32cd32; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover, button:active { background-color: #228b22; }
-        img { max-width: 80px; margin: 10px 0; }
-        @media (max-width: 600px) { h1 { font-size: 18px; } #question { font-size: 16px; } .answer-btn { font-size: 14px; padding: 10px; } #feedback { font-size: 12px; } }
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            touch-action: manipulation;
+        }
+        h1 {
+            color: #4682b4;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        #game-container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        #question {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .answer-btn {
+            display: block;
+            width: 90%;
+            margin: 10px auto;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #87ceeb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .answer-btn:hover, .answer-btn:active {
+            background-color: #4682b4;
+            color: #fff;
+        }
+        #feedback {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #228b22;
+        }
+        #shield-count {
+            font-size: 16px;
+            color: #ff4500;
+        }
+        #start-screen, #end-screen {
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #32cd32;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover, button:active {
+            background-color: #228b22;
+        }
+        img {
+            max-width: 80px;
+            margin: 10px 0;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 18px; }
+            #question { font-size: 16px; }
+            .answer-btn { font-size: 14px; padding: 10px; }
+            #feedback { font-size: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -45,22 +110,96 @@
             <button onclick="restartGame()">もう一度遊ぶ</button>
         </div>
     </div>
+
     <script>
         const quizzes = [
-            { question: "知らないおじさんが「一緒に子犬を見に行こう」と言ってきた。どうする？", answers: ["「いいよ！」とついていく", "「ノー！」と言ってその場を離れる", "黙ってじっとする", "「あとでね」と言う"], correct: 1, feedback: "知らない人に誘われたら、はっきり「ノー」と言って、すぐに安全な場所に行こう！親や先生に話すのも大切だよ！" },
-            { question: "LINEで知らない人から「名前と学校を教えて」と言われた。どうする？", answers: ["名前と学校を教える", "メッセージを無視してブロックする", "「教えない」と返信する", "ウソの名前を教える"], correct: 1, feedback: "知らない人に名前や学校を教えるのは危険！無視してブロックし、親や先生に話そう。" },
-            { question: "知らない人が学校の近くで「ママが迎えに来てって」と言ってきた。どうする？", answers: ["すぐについていく", "親に電話して確認する", "「待ってて」と言う", "その場で泣く"], correct: 1, feedback: "知らない人が親のことを話しても、すぐには信じないで。親や先生に連絡して確認しよう！" },
-            { question: "友達のお兄さんが「これは秘密だよ」と言って、変なことをしてきた。どうする？", answers: ["秘密を守る", "親や先生に話す", "友達にだけ話す", "何もしない"], correct: 1, feedback: "「秘密」と言われても、変なことや嫌なことは信頼できる大人に話そう。秘密は危険なサインだよ。" },
-            { question: "困ったとき、誰に相談できる？", answers: ["知らないおじさん", "親や先生", "テレビのキャラクター", "知らないお姉さん"], correct: 1, feedback: "困ったときは、親、先生、近所のおばあちゃんなど、あなたをよく知っている大人に相談しよう！" }
+            {
+                question: "知らないおじさんが「一緒に子犬を見に行こう」と言ってきた。どうする？",
+                answers: ["「いいよ！」とついていく", "「ノー！」と言ってその場を離れる", "黙ってじっとする", "「あとでね」と言う"],
+                correct: 1,
+                feedback: "知らない人に誘われたら、はっきり「ノー」と言って、すぐに安全な場所に行こう！親や先生に話すのも大切だよ！"
+            },
+            {
+                question: "LINEで知らない人から「名前と学校を教えて」と言われた。どうする？",
+                answers: ["名前と学校を教える", "メッセージを無視してブロックする", "「教えない」と返信する", "ウソの名前を教える"],
+                correct: 1,
+                feedback: "知らない人に名前や学校を教えるのは危険！無視してブロックし、親や先生に話そう。"
+            },
+            {
+                question: "知らない人が学校の近くで「ママが迎えに来てって」と言ってきた。どうする？",
+                answers: ["すぐについていく", "親に電話して確認する", "「待ってて」と言う", "その場で泣く"],
+                correct: 1,
+                feedback: "知らない人が親のことを話しても、すぐには信じないで。親や先生に連絡して確認しよう！"
+            },
+            {
+                question: "友達のお兄さんが「これは秘密だよ」と言って、変なことをしてきた。どうする？",
+                answers: ["秘密を守る", "親や先生に話す", "友達にだけ話す", "何もしない"],
+                correct: 1,
+                feedback: "「秘密」と言われても、変なことや嫌なことは信頼できる大人に話そう。秘密は危険なサインだよ。"
+            },
+            {
+                question: "困ったとき、誰に相談できる？",
+                answers: ["知らないおじさん", "親や先生", "テレビのキャラクター", "知らないお姉さん"],
+                correct: 1,
+                feedback: "困ったときは、親、先生、近所のおばあちゃんなど、あなたをよく知っている大人に相談しよう！"
+            }
         ];
+
         let currentQuiz = 0;
         let shieldCount = 0;
-        function startGame() { document.getElementById('start-screen').style.display = 'none'; document.getElementById('quiz-screen').style.display = 'block'; showQuiz(); }
-        function showQuiz() { const quiz = quizzes[currentQuiz]; document.getElementById('question').textContent = quiz.question; const buttons = document.getElementsByClassName('answer-btn'); for (let i = 0; i < buttons.length; i++) buttons[i].textContent = quiz.answers[i]; document.getElementById('feedback').textContent = ''; document.getElementById('shield-count').textContent = `シールド: ${shieldCount}`; }
-        function checkAnswer(index) { const quiz = quizzes[currentQuiz]; if (index === quiz.correct) { shieldCount++; document.getElementById('feedback').textContent = 'やった！正解！シールドをゲット！'; document.getElementById('feedback').style.color = '#228b22'; } else { document.getElementById('feedback').textContent = '惜しい！' + quiz.feedback; document.getElementById('feedback').style.color = '#ff4500'; } setTimeout(nextQuiz, 2000); }
-        function nextQuiz() { currentQuiz++; if (currentQuiz < quizzes.length) showQuiz(); else endGame(); }
-        function endGame() { document.getElementById('quiz-screen').style.display = 'none'; document.getElementById('end-screen').style.display = 'block'; document.getElementById('final-message').textContent = `あなたは${shieldCount}個のシールドをゲット！セーフティ・ヒーローだよ！親や先生と「信頼できる大人」を話してみてね！`; }
-        function restartGame() { currentQuiz = 0; shieldCount = 0; document.getElementById('end-screen').style.display = 'none'; document.getElementById('quiz-screen').style.display = 'block'; showQuiz(); }
+
+        function startGame() {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('quiz-screen').style.display = 'block';
+            showQuiz();
+        }
+
+        function showQuiz() {
+            const quiz = quizzes[currentQuiz];
+            document.getElementById('question').textContent = quiz.question;
+            const buttons = document.getElementsByClassName('answer-btn');
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].textContent = quiz.answers[i];
+            }
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('shield-count').textContent = `シールド: ${shieldCount}`;
+        }
+
+        function checkAnswer(index) {
+            const quiz = quizzes[currentQuiz];
+            if (index === quiz.correct) {
+                shieldCount++;
+                document.getElementById('feedback').textContent = 'やった！正解！シールドをゲット！';
+                document.getElementById('feedback').style.color = '#228b22';
+            } else {
+                document.getElementById('feedback').textContent = '惜しい！' + quiz.feedback;
+                document.getElementById('feedback').style.color = '#ff4500';
+            }
+            setTimeout(nextQuiz, 2000);
+        }
+
+        function nextQuiz() {
+            currentQuiz++;
+            if (currentQuiz < quizzes.length) {
+                showQuiz();
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            document.getElementById('quiz-screen').style.display = 'none';
+            document.getElementById('end-screen').style.display = 'block';
+            document.getElementById('final-message').textContent = `あなたは${shieldCount}個のシールドをゲット！セーフティ・ヒーローだよ！親や先生と「信頼できる大人」を話してみてね！`;
+        }
+
+        function restartGame() {
+            currentQuiz = 0;
+            shieldCount = 0;
+            document.getElementById('end-screen').style.display = 'none';
+            document.getElementById('quiz-screen').style.display = 'block';
+            showQuiz();
+        }
     </script>
 </body>
 </html>
